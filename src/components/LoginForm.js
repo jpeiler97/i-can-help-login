@@ -40,7 +40,6 @@ function LoginForm({ Login, error }) {
             spacing={2}
           >
             <h2 className={classes.loginTitle}>Login</h2>
-            {error !== "" ? <div className="error">{error}</div> : ""}
             <Box width="80%">
               <Paper className={classes.innerPaper}>
                 <Grid
@@ -75,6 +74,7 @@ function LoginForm({ Login, error }) {
                     ></TextField>
                   </Grid>
                 </Grid>
+                {error !== "" ? <div className="error">{error}</div> : ""}
               </Paper>
             </Box>
             <Button

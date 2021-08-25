@@ -12,6 +12,7 @@ class LoginPage extends React.Component {
       Password: null,
       login: false,
       store: null,
+      error: "",
     };
   }
 
@@ -29,7 +30,7 @@ class LoginPage extends React.Component {
         );
         this.storeCollector();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => this.setState({ error: "Could not log in" }));
   };
 
   Logout = () => {
@@ -43,7 +44,7 @@ class LoginPage extends React.Component {
   storeCollector() {
     let store = JSON.parse(localStorage.getItem("login"));
     if (store && store.login) {
-      this.setState({ login: true, store: store });
+      this.setState({ login: true, store: store, error: "" });
     }
   }
   render() {
@@ -54,7 +55,10 @@ class LoginPage extends React.Component {
             <Home Logout={this.Logout} />
           ) : (
             <div>
-              <LoginForm Login={this.Login}></LoginForm>
+              <LoginForm
+                Login={this.Login}
+                error={this.state.error}
+              ></LoginForm>
             </div>
           )}
         </div>
