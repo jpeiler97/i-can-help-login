@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 function LoginForm({ Login, error }) {
   const classes = useStyles();
-  const [details, setDetails] = useState({ name: "", email: "", password: "" });
+  const [details, setDetails] = useState({ Email: "", Password: "" });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -53,24 +53,13 @@ function LoginForm({ Login, error }) {
                   <Grid container item xs={9}>
                     <TextField
                       id="outlined-basic"
-                      label="Name"
-                      variant="standard"
-                      onChange={(e) =>
-                        setDetails({ ...details, name: e.target.value })
-                      }
-                      value={details.name}
-                    ></TextField>
-                  </Grid>
-                  <Grid container item xs={9}>
-                    <TextField
-                      id="outlined-basic"
                       label="Email"
                       variant="standard"
                       type="email"
                       onChange={(e) =>
-                        setDetails({ ...details, email: e.target.value })
+                        setDetails({ ...details, Email: e.target.value })
                       }
-                      value={details.email}
+                      value={details.Email}
                     ></TextField>
                   </Grid>
                   <Grid container item xs={9}>
@@ -80,9 +69,9 @@ function LoginForm({ Login, error }) {
                       type="password"
                       variant="standard"
                       onChange={(e) =>
-                        setDetails({ ...details, password: e.target.value })
+                        setDetails({ ...details, Password: e.target.value })
                       }
-                      value={details.password}
+                      value={details.Password}
                     ></TextField>
                   </Grid>
                 </Grid>

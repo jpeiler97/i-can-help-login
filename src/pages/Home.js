@@ -1,11 +1,9 @@
 import React from "react";
 
-function Home({ Logout, username }) {
+function Home({ Logout }) {
   return (
     <div className="welcome">
-      <h2>
-        Welcome, <span>{username}</span>
-      </h2>
+      <h2>Welcome</h2>
       <button onClick={Logout}>Logout</button>
     </div>
   );

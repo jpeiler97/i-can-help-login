@@ -1,44 +1,66 @@
-import React, { useState } from "react";
+import React from "react";
 import LoginForm from "../components/LoginForm";
 import Home from "./Home";
+import { Route } from "../utils/config";
+import axios from "axios";
 
-function LoginPage() {
-  const admin = {
-    email: "admin@admin.com",
-    password: "qqq",
+class LoginPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      Email: null,
+      Password: null,
+      login: false,
+      store: null,
+    };
+  }
+
+  Login = (details) => {
+    axios
+      .post(`${Route}/User/Login`, details)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem(
+          "login",
+          JSON.stringify({
+            login: true,
+            token: res.data.token,
+          })
+        );
+        this.storeCollector();
+      })
+      .catch((err) => console.log(err));
   };
 
-  const [user, setUser] = useState({ name: "", email: "" });
-  const [error, setError] = useState("");
+  Logout = () => {
+    this.setState({ login: false });
+  };
 
-  const Login = (details) => {
-    console.log(details);
+  componentDidMount() {
+    this.storeCollector();
+  }
 
-    if (details.email === admin.email && details.password === admin.password) {
-      setUser({ name: details.name, email: details.email });
-      setError("");
-    } else {
-      setError("Details do not match");
+  storeCollector() {
+    let store = JSON.parse(localStorage.getItem("login"));
+    if (store && store.login) {
+      this.setState({ login: true, store: store });
     }
-  };
-
-  const Logout = () => {
-    setUser({ name: "", email: "" });
-  };
-
-  return (
-    <div>
+  }
+  render() {
+    return (
       <div>
-        {user.email !== "" ? (
-          <Home username={user.name} Logout={Logout} />
-        ) : (
-          <div>
-            <LoginForm Login={Login} error={error}></LoginForm>
-          </div>
-        )}
+        <div>
+          {this.state.login ? (
+            <Home Logout={this.Logout} />
+          ) : (
+            <div>
+              <LoginForm Login={this.Login}></LoginForm>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default LoginPage;
