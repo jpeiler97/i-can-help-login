@@ -1,11 +1,40 @@
 import React from "react";
+import {
+  Grid,
+  Paper,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-function Card({ title, description }) {
+const useStyles = makeStyles({
+  opportunityCard: {
+    // marginTop: "5px",
+    whiteSpace: "unset",
+  },
+  paper: {
+    backgroundColor: "#ecf2d8",
+  },
+});
+
+function Card({ title, description, details }) {
+  const { opportunityCard, paper } = useStyles();
   return (
-    <div>
-      <h1>{title}</h1>
-      <h2>{description}</h2>
-    </div>
+    <Grid container item xs={8} sm={6} md={4} className={opportunityCard}>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          {title} <br />
+          <br /> {description}
+        </AccordionSummary>
+        <AccordionDetails>{details}</AccordionDetails>
+      </Accordion>
+    </Grid>
   );
 }
 
