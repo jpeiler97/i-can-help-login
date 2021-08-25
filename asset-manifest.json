@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/i-can-help-login/static/css/main.1af1a9db.chunk.css",
+    "main.js": "/i-can-help-login/static/js/main.33c1ce3a.chunk.js",
+    "main.js.map": "/i-can-help-login/static/js/main.33c1ce3a.chunk.js.map",
+    "runtime-main.js": "/i-can-help-login/static/js/runtime-main.fad1397d.js",
+    "runtime-main.js.map": "/i-can-help-login/static/js/runtime-main.fad1397d.js.map",
+    "static/js/2.ec34c829.chunk.js": "/i-can-help-login/static/js/2.ec34c829.chunk.js",
+    "static/js/2.ec34c829.chunk.js.map": "/i-can-help-login/static/js/2.ec34c829.chunk.js.map",
+    "index.html": "/i-can-help-login/index.html",
+    "static/css/main.1af1a9db.chunk.css.map": "/i-can-help-login/static/css/main.1af1a9db.chunk.css.map",
+    "static/js/2.ec34c829.chunk.js.LICENSE.txt": "/i-can-help-login/static/js/2.ec34c829.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fad1397d.js",
+    "static/js/2.ec34c829.chunk.js",
+    "static/css/main.1af1a9db.chunk.css",
+    "static/js/main.33c1ce3a.chunk.js"
+  ]
+}
