@@ -1,2 +1,7 @@
-.opportunity-card {
+.login-header {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  font-size: 50px;
+  flex-direction: row;
+  justify-content: center;
 }

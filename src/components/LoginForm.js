@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { Button, Grid, Paper, TextField, Box } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Box,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
+  root: {
+    marginTop: "30px",
+  },
   paper: {
     backgroundColor: "#c2ede4",
   },
@@ -30,8 +40,8 @@ function LoginForm({ Login, error }) {
 
   return (
     <form onSubmit={submitHandler}>
-      <Box width="100%">
-        <Paper className={classes.paper} elevation={3}>
+      <Container maxWidth="md" className={classes.root}>
+        <Paper className={classes.paper} elevation={3} sm={2}>
           <Grid
             container
             direction="column"
@@ -89,7 +99,7 @@ function LoginForm({ Login, error }) {
 
           <Grid container direction="column" alignItems="center"></Grid>
         </Paper>
-      </Box>
+      </Container>
     </form>
   );
 }

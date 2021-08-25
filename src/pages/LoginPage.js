@@ -52,9 +52,10 @@ class LoginPage extends React.Component {
       <div>
         <div>
           {this.state.login ? (
-            <Home Logout={this.Logout} />
+            <Home />
           ) : (
             <div>
+              <h1 className="login-header">KyendR</h1>
               <LoginForm
                 Login={this.Login}
                 error={this.state.error}
