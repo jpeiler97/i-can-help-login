@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Grid,
-  Paper,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -11,7 +10,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles({
   opportunityCard: {
-    // marginTop: "5px",
     whiteSpace: "unset",
   },
   paper: {
