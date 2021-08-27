@@ -19,7 +19,7 @@ class Opportunities extends React.Component {
   getOpportunities() {
     let store = JSON.parse(localStorage.getItem("login"));
     axios
-      .get(`${Route}/Provider/GetOpenOpportunities?daysOut=30`, {
+      .get(`${Route}/Provider/GetOpenOpportunities?daysOut=60`, {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => this.setState({ opportunities: res.data }))
@@ -27,8 +27,7 @@ class Opportunities extends React.Component {
   }
   render() {
     return (
-      <div className="welcome">
-        <h2>Welcome</h2>
+      <div>
         <Grid
           container
           direction="column"
