@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -10,29 +10,31 @@ import OpportunityPage from "./pages/OpportunityPage";
 import NeedsPage from "./pages/NeedsPage";
 import HistoryPage from "./pages/HistoryPage";
 import Home from "./pages/Home";
+import { userContext } from "./Context";
 import "./styles/styles.css";
 
 function App() {
-  const [user, setUser] = useState({ name: "", email: "" });
-
+  // const [user, setUser] = useState({ name: "", email: "" });
+  const { userObject, isAuthenticated } = useContext(userContext);
+  console.log(userObject, isAuthenticated);
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home />
+            {isAuthenticated ? <Home /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/login">
-            <LoginPage />
+            {isAuthenticated ? <Redirect to="/" /> : <LoginPage />}
           </Route>
           <Route exact path="/opportunities">
-            <OpportunityPage></OpportunityPage>
+            {isAuthenticated ? <OpportunityPage /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/meetaneed">
-            <NeedsPage></NeedsPage>
+            {isAuthenticated ? <NeedsPage /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/history">
-            <HistoryPage></HistoryPage>
+            {isAuthenticated ? <HistoryPage /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </Router>

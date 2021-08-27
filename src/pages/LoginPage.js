@@ -1,6 +1,5 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
-import Home from "./Home";
 import { Route } from "../utils/config";
 import axios from "axios";
 
@@ -33,10 +32,6 @@ class LoginPage extends React.Component {
       .catch((err) => this.setState({ error: "Could not log in" }));
   };
 
-  Logout = () => {
-    this.setState({ login: false });
-  };
-
   componentDidMount() {
     this.storeCollector();
   }
@@ -50,19 +45,8 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          {this.state.login ? (
-            <Home />
-          ) : (
-            <div>
-              <h1 className="login-header">KyendR</h1>
-              <LoginForm
-                Login={this.Login}
-                error={this.state.error}
-              ></LoginForm>
-            </div>
-          )}
-        </div>
+        <h1 className="login-header">KyendR</h1>
+        <LoginForm Login={this.Login} error={this.state.error}></LoginForm>
       </div>
     );
   }
