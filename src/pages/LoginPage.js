@@ -1,6 +1,7 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
 import { Route } from "../utils/config";
+import logo from "../assets/images/logoNoBkg.png";
 import axios from "axios";
 
 class LoginPage extends React.Component {
@@ -45,7 +46,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="login-header">KyendR</h1>
+        <img className="login-logo" src={logo} alt={"KyendR"} />
         <LoginForm Login={this.Login} error={this.state.error}></LoginForm>
       </div>
     );
