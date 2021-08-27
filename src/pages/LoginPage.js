@@ -29,6 +29,7 @@ class LoginPage extends React.Component {
           })
         );
         this.storeCollector();
+        window.location = "/";
       })
       .catch((err) => this.setState({ error: "Could not log in" }));
   };

@@ -21,10 +21,11 @@ const useStyles = makeStyles({
   },
   loginTitle: {
     fontSize: "30px",
-    fontFamily: "roboto",
+    fontFamily: "Roboto",
   },
   innerPaper: {
-    margin: "10px",
+    marginTop: "10px",
+    marginBottom: "20px",
   },
 });
 
@@ -40,8 +41,8 @@ function LoginForm({ Login, error }) {
 
   return (
     <form onSubmit={submitHandler}>
-      <Container maxWidth="md" className={classes.root}>
-        <Paper className={classes.paper} elevation={3} sm={2}>
+      <Container maxWidth="sm" className={classes.root}>
+        <Paper className={classes.paper} elevation={3}>
           <Grid
             container
             direction="column"
@@ -50,16 +51,16 @@ function LoginForm({ Login, error }) {
             spacing={2}
           >
             <h2 className={classes.loginTitle}>Login</h2>
-            <Box width="80%">
-              <Paper className={classes.innerPaper}>
+            <Box width="70%">
+              <Paper className={classes.innerPaper} elevation={2}>
                 <Grid
                   container
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
-                  spacing={5}
+                  spacing={4}
                 >
-                  <Grid container item xs={9}>
+                  <Grid item>
                     <TextField
                       id="outlined-basic"
                       label="Email"
@@ -71,7 +72,7 @@ function LoginForm({ Login, error }) {
                       value={details.Email}
                     ></TextField>
                   </Grid>
-                  <Grid container item xs={9}>
+                  <Grid item>
                     <TextField
                       id="outlined-basic"
                       label="Password"
