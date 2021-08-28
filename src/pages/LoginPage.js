@@ -29,9 +29,13 @@ class LoginPage extends React.Component {
           })
         );
         this.storeCollector();
-        window.location = "/";
+        console.log(window.location);
+        window.location.replace(`${window.location.pathname}/`);
       })
-      .catch((err) => this.setState({ error: "Could not log in" }));
+      .catch((err) => {
+        console.log(err);
+        this.setState({ error: "Could not log in" });
+      });
   };
 
   componentDidMount() {
