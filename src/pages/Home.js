@@ -10,7 +10,11 @@ function Home() {
       <h2>Welcome</h2>
       <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item xs={8}>
-          <Link to="/meetaneed" className={location.pathname === "/meetaneed"}>
+          <Link
+            to="/meetaneed"
+            className={location.pathname === "/meetaneed"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               style={{ minWidth: "170px" }}
               variant="contained"
@@ -23,6 +27,7 @@ function Home() {
         <Grid item xs={8}>
           <Link
             to="/opportunities"
+            style={{ textDecoration: "none" }}
             className={location.pathname === "/opportunities"}
           >
             <Button
@@ -35,7 +40,11 @@ function Home() {
           </Link>
         </Grid>
         <Grid item xs={8}>
-          <Link to="/history" className={location.pathname === "/history"}>
+          <Link
+            to="/history"
+            className={location.pathname === "/history"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               style={{ minWidth: "170px" }}
               variant="contained"

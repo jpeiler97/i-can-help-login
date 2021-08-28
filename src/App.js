@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Redirect,
   Route,
   Switch,
@@ -24,16 +24,16 @@ function App() {
           <Route exact path="/">
             {isAuthenticated ? <Home /> : <Redirect to="/login" />}
           </Route>
-          <Route exact path="/login">
+          <Route path="/login">
             {isAuthenticated ? <Redirect to="/" /> : <LoginPage />}
           </Route>
-          <Route exact path="/opportunities">
+          <Route path="/opportunities">
             {isAuthenticated ? <OpportunityPage /> : <Redirect to="/login" />}
           </Route>
-          <Route exact path="/meetaneed">
+          <Route path="/meetaneed">
             {isAuthenticated ? <NeedsPage /> : <Redirect to="/login" />}
           </Route>
-          <Route exact path="/history">
+          <Route path="/history">
             {isAuthenticated ? <HistoryPage /> : <Redirect to="/login" />}
           </Route>
         </Switch>
