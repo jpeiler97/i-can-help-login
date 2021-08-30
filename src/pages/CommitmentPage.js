@@ -28,6 +28,7 @@ class Commitments extends React.Component {
       })
       .catch((err) => console.log(err));
   }
+
   render() {
     return (
       <div>
@@ -43,6 +44,7 @@ class Commitments extends React.Component {
               return (
                 <Card
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   description={item.description}
                   details={item.details}

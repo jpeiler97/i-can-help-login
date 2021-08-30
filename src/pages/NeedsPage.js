@@ -39,6 +39,7 @@ class NeedsPage extends React.Component {
             return (
               <Card
                 key={need.id}
+                id={need.id}
                 title={need.title}
                 description={need.description}
                 details={need.details}
