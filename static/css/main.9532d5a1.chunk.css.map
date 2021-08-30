@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/styles/styles.css"],"names":[],"mappings":"AAAA,YACE,aAAc,CACd,eAAgB,CAChB,gBAAiB,CACjB,iBACF","file":"main.9532d5a1.chunk.css","sourcesContent":[".login-logo {\r\n  display: block;\r\n  max-width: 350px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}\r\n"]}
