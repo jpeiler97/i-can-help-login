@@ -29,7 +29,6 @@ class LoginPage extends React.Component {
           })
         );
         this.storeCollector();
-        console.log(window.location);
         window.location.replace(`${window.location.pathname}/`);
       })
       .catch((err) => {

@@ -12,7 +12,6 @@ export default function Context({ children }) {
         setIsAuthenticated(true);
       }
     }
-    // setIsLoaded(true);
   }, []);
 
   return (

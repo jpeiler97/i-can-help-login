@@ -11,7 +11,6 @@ import "./styles/styles.css";
 function App() {
   // const [user, setUser] = useState({ name: "", email: "" });
   const { userObject, isAuthenticated } = useContext(userContext);
-  console.log(userObject, isAuthenticated);
 
   return (
     <div className="App">
