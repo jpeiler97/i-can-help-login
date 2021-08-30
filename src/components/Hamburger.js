@@ -175,6 +175,9 @@ export default function PersistentDrawerLeft() {
         </List>
         <LogoutButton closeDrawer={handleDrawerClose}></LogoutButton>
       </Drawer>
+      {/* <AppBar position="fixed" className={clsx(classes.appBar)}>
+        <Toolbar></Toolbar>
+      </AppBar> */}
     </div>
   );
 }

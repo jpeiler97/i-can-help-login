@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Hamburger from "./Hamburger";
+import NavBar from "./NavBar";
+import { userContext } from "../Context";
 
 function Nav() {
+  const { isAuthenticated } = useContext(userContext);
   return (
     <div className="nav">
-      <Hamburger></Hamburger>
+      {isAuthenticated ? <Hamburger></Hamburger> : <NavBar></NavBar>}
     </div>
   );
 }
