@@ -55,7 +55,7 @@ function Home() {
           </Link>
         </Grid>
       </Grid>
-      {/* <button onClick={() => logOut()}>Log out</button> */}
+      <button onClick={() => logOut()}>Log out</button>
     </div>
   );
 }
