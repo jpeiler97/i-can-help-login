@@ -54,7 +54,6 @@ function Home() {
           </Link>
         </Grid>
       </Grid>
-      <LogoutButton></LogoutButton>
     </div>
   );
 }

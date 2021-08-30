@@ -2,8 +2,13 @@ import React, { useContext } from "react";
 import { Route } from "../utils/config";
 import axios from "axios";
 import { userContext } from "../Context";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
-function LogoutButton() {
+function LogoutButton({ closeDrawer }) {
   const { setIsAuthenticated } = useContext(userContext);
 
   const Logout = () => {
@@ -21,13 +26,23 @@ function LogoutButton() {
         .then((res) => {
           console.log(res);
           localStorage.removeItem("login");
+          closeDrawer();
           setIsAuthenticated(false);
         })
         .catch((err) => console.log(err.response));
     }
   };
 
-  return <button onClick={Logout}>Logout</button>;
+  return (
+    <List>
+      <ListItem button onClick={Logout}>
+        <ListItemIcon>
+          <MeetingRoomIcon />
+        </ListItemIcon>
+        <ListItemText primary="Logout"></ListItemText>
+      </ListItem>
+    </List>
+  );
 }
 
 export default LogoutButton;

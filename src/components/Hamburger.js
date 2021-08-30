@@ -18,6 +18,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HistoryIcon from "@material-ui/icons/History";
 import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import LogoutButton from "./LogOutButton";
 import { Link, useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: "#c2ede4",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -59,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
   },
   content: {
     flexGrow: 1,
@@ -103,7 +105,6 @@ export default function PersistentDrawerLeft() {
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -123,6 +124,7 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
+          <Typography>KeyndR</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -137,7 +139,8 @@ export default function PersistentDrawerLeft() {
           <Link
             to="/meetaneed"
             className={location.pathname === "/meetaneed"}
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.87)" }}
+            onClick={handleDrawerClose}
           >
             <ListItem button>
               <ListItemIcon>
@@ -148,12 +151,19 @@ export default function PersistentDrawerLeft() {
           </Link>
         </List>
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <CollectionsBookmarkIcon />
-            </ListItemIcon>
-            <ListItemText primary="My Commitments"></ListItemText>
-          </ListItem>
+          <Link
+            to="/commitments"
+            className={location.pathname === "/commitments"}
+            style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.87)" }}
+            onClick={handleDrawerClose}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <CollectionsBookmarkIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Commitments"></ListItemText>
+            </ListItem>
+          </Link>
         </List>
         <List>
           <ListItem button>
@@ -163,6 +173,7 @@ export default function PersistentDrawerLeft() {
             <ListItemText primary="My History"></ListItemText>
           </ListItem>
         </List>
+        <LogoutButton closeDrawer={handleDrawerClose}></LogoutButton>
       </Drawer>
     </div>
   );

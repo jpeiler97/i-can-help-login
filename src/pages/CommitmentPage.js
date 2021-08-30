@@ -31,15 +31,15 @@ class Commitments extends React.Component {
   render() {
     return (
       <div>
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          {this.state.commitments.length > 0 ? (
-            this.state.commitments.map((item, i) => {
+        {this.state.commitments.length > 0 ? (
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            spacing={2}
+          >
+            {this.state.commitments.map((item, i) => {
               return (
                 <Card
                   key={item.id}
@@ -48,11 +48,14 @@ class Commitments extends React.Component {
                   details={item.details}
                 ></Card>
               );
-            })
-          ) : (
-            <h1>No commitments</h1>
-          )}
-        </Grid>
+            })}
+          </Grid>
+        ) : (
+          <div className="no-commitments">
+            <h2>No Commitments yet.</h2>
+            <h3>View the "Fill a Need" page to find a new commitment.</h3>
+          </div>
+        )}
       </div>
     );
   }

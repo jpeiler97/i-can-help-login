@@ -34,7 +34,6 @@ function App() {
           {isAuthenticated ? <HistoryPage /> : <Redirect to="/login" />}
         </Route>
       </Switch>
-      <Footer></Footer>
     </div>
   );
 }
