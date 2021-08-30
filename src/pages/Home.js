@@ -7,7 +7,6 @@ function Home() {
 
   return (
     <div className="welcome">
-      <h2>Welcome</h2>
       <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item xs={8}>
           <Link
@@ -26,9 +25,9 @@ function Home() {
         </Grid>
         <Grid item xs={8}>
           <Link
-            to="/opportunities"
+            to="/commitments"
             style={{ textDecoration: "none" }}
-            className={location.pathname === "/opportunities"}
+            className={location.pathname === "/commitments"}
           >
             <Button
               style={{ minWidth: "170px" }}
