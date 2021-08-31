@@ -43,3 +43,11 @@ body {
   align-items: center;
   text-align: center;
 }
+
+.loading {
+  display: flex;
+  height: 75vh;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

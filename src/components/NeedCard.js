@@ -10,7 +10,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Route } from "../utils/config";
 import axios from "axios";
 const useStyles = makeStyles({
-  opportunityCard: {
+  needCard: {
     whiteSpace: "unset",
   },
   paper: {
@@ -18,32 +18,13 @@ const useStyles = makeStyles({
   },
 });
 
-function Card({ title, description, details, id }) {
-  const { opportunityCard, paper } = useStyles();
+function NeedCard({ title, description, details, id, Commit }) {
+  const { needCard, paper } = useStyles();
 
   // console.log({ id });
-  const Commit = (id) => {
-    let store = JSON.parse(localStorage.getItem("login"));
-
-    axios
-      .post(
-        `${Route}/Provider/Commit`,
-        {
-          needId: id,
-          count: 1,
-        },
-        {
-          headers: { Authorization: `Bearer ${store.token}` },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
-    <Grid container item xs={8} sm={6} md={4} className={opportunityCard}>
+    <Grid container item xs={8} sm={6} md={4} className={needCard}>
       <button onClick={() => Commit(id)}>Commit</button>
       <Accordion>
         <AccordionSummary
@@ -60,4 +41,4 @@ function Card({ title, description, details, id }) {
   );
 }
 
-export default Card;
+export default NeedCard;

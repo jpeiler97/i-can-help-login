@@ -1,33 +1,62 @@
 import axios from "axios";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "../utils/config";
-import Card from "../components/Card";
+import NeedCard from "../components/NeedCard";
 import { Grid } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-class NeedsPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      needs: [],
-    };
-  }
+function NeedsPage() {
+  const [needs, setNeeds] = useState({
+    needs: [],
+  });
+  const [isLoading, setIsLoading] = useState(true);
 
-  componentDidMount() {
-    this.getNeeds();
-  }
+  useEffect(() => {
+    getNeeds();
+  }, []);
 
-  getNeeds() {
+  const getNeeds = () => {
     let store = JSON.parse(localStorage.getItem("login"));
     axios
       .get(`${Route}/Provider/GetOpenOpportunities?daysOut=60`, {
         headers: { Authorization: `Bearer ${store.token}` },
       })
-      .then((res) => this.setState({ needs: res.data }))
+      .then((res) => {
+        console.log(res);
+        setIsLoading(false);
+        setNeeds(res.data);
+      })
       .catch((err) => console.log(err));
-  }
-  render() {
-    return (
-      <div>
+  };
+
+  const Commit = (id) => {
+    let store = JSON.parse(localStorage.getItem("login"));
+
+    axios
+      .post(
+        `${Route}/Provider/Commit`,
+        {
+          needId: id,
+          count: 1,
+        },
+        {
+          headers: { Authorization: `Bearer ${store.token}` },
+        }
+      )
+      .then((res) => {
+        getNeeds();
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <div>
+      {isLoading ? (
+        <div className="loading">
+          <CircularProgress />
+        </div>
+      ) : needs.length > 0 ? (
         <Grid
           container
           direction="column"
@@ -35,21 +64,24 @@ class NeedsPage extends React.Component {
           alignItems="center"
           spacing={2}
         >
-          {this.state.needs.map((need, i) => {
+          {needs.map((need) => {
             return (
-              <Card
+              <NeedCard
                 key={need.id}
                 id={need.id}
                 title={need.title}
                 description={need.description}
                 details={need.details}
-              ></Card>
+                Commit={Commit}
+              ></NeedCard>
             );
           })}
         </Grid>
-      </div>
-    );
-  }
+      ) : (
+        <h1>Nothing here</h1>
+      )}
+    </div>
+  );
 }
 
 export default NeedsPage;
