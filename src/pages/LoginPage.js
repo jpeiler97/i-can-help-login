@@ -20,7 +20,7 @@ class LoginPage extends React.Component {
     axios
       .post(`${Route}/User/Login`, details)
       .then((res) => {
-        console.log(res);
+        console.log("res ", res.config);
         localStorage.setItem(
           "login",
           JSON.stringify({

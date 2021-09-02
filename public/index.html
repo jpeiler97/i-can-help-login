@@ -24,7 +24,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("./serviceworker.js")
+            .register("%PUBLIC_URL%/serviceworker.js")
             .then((reg) => console.log("success: ", reg.scope))
             .catch((err) => console.log("Error: ", err));
         });

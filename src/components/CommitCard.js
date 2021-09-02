@@ -4,39 +4,48 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Route } from "../utils/config";
-import axios from "axios";
+
 const useStyles = makeStyles({
-  commitCard: {
-    whiteSpace: "unset",
+  root: {
+    width: "70%",
   },
-  paper: {
-    backgroundColor: "#ecf2d8",
+  descDiv: {
+    whiteSpace: "wrap",
+  },
+  uncommit: {
+    backgroundColor: "#c46956",
+    height: "30px",
   },
 });
 
 function CommitCard({ title, description, details, id, Uncommit }) {
-  const { commitCard, paper } = useStyles();
+  const classes = useStyles();
 
   // console.log({ id });
 
   return (
-    <Grid container item xs={8} sm={6} md={4} className={commitCard}>
-      <button onClick={() => Uncommit(id)}>Uncommit</button>
-      <Accordion>
+    <Grid container item xs={12} justify="space-around" alignItems="center">
+      <Accordion className={classes.root}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          {title} <br />
-          <br /> {description}
+          <div className={classes.descDiv}>{title}</div>
         </AccordionSummary>
-        <AccordionDetails>{details}</AccordionDetails>
+        <AccordionDetails>
+          {details ? details : "No Details"}
+          <br />
+          {description ? description : "No Description"}
+        </AccordionDetails>
       </Accordion>
+      <Button onClick={() => Uncommit(id)} className={classes.uncommit}>
+        Uncommit
+      </Button>
     </Grid>
   );
 }

@@ -57,13 +57,7 @@ function NeedsPage() {
           <CircularProgress />
         </div>
       ) : needs.length > 0 ? (
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
+        <Grid container direction="column" spacing={2}>
           {needs.map((need) => {
             return (
               <NeedCard
@@ -78,7 +72,9 @@ function NeedsPage() {
           })}
         </Grid>
       ) : (
-        <h1>Nothing here</h1>
+        <div className="no-commitments">
+          <h2>No Opportunities Available</h2>
+        </div>
       )}
     </div>
   );
