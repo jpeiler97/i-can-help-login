@@ -174,7 +174,7 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <LogoutButton closeDrawer={handleDrawerClose}></LogoutButton>
-        v3
+        v4
       </Drawer>
     </div>
   );
