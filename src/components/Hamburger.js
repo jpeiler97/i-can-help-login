@@ -135,7 +135,6 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-
         <List>
           <Link
             to="/meetaneed"
@@ -175,10 +174,8 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <LogoutButton closeDrawer={handleDrawerClose}></LogoutButton>
+        v3
       </Drawer>
-      {/* <AppBar position="fixed" className={clsx(classes.appBar)}>
-        <Toolbar></Toolbar>
-      </AppBar> */}
     </div>
   );
 }

@@ -21,14 +21,31 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("%PUBLIC_URL%/serviceworker.js")
-            .then((reg) => console.log("success: ", reg.scope))
-            .catch((err) => console.log("Error: ", err));
-        });
-      }
+      window.isUpdateAvailable = new Promise(function (resolve, reject) {
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", () => {
+            navigator.serviceWorker
+              .register("%PUBLIC_URL%/serviceworker.js")
+              .then((reg) => {
+                reg.onupdatefound = () => {
+                  const installingWorker = reg.installing;
+                  installingWorker.onstatechange = () => {
+                    switch (installingWorker.state) {
+                      case "installed":
+                        if (navigator.serviceWorker.controller) {
+                          resolve(true);
+                        } else {
+                          resolve(false);
+                        }
+                        break;
+                    }
+                  };
+                };
+              })
+              .catch((err) => console.log("Error: ", err));
+          });
+        }
+      });
     </script>
   </body>
 </html>
