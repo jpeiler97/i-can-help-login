@@ -7,12 +7,11 @@ import HistoryPage from "./pages/HistoryPage";
 import Home from "./pages/Home";
 import { userContext } from "./Context";
 import Nav from "./components/Nav";
-import Footer from "./components/Footer";
 import "./styles/styles.css";
 
 function App() {
   // const [user, setUser] = useState({ name: "", email: "" });
-  const { userObject, isAuthenticated } = useContext(userContext);
+  const { isAuthenticated } = useContext(userContext);
 
   return (
     <div className="App">

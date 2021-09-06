@@ -1,19 +1,12 @@
 import React from "react";
-import { Grid, Button, Container } from "@material-ui/core";
-import { Link, useLocation } from "react-router-dom";
-import LogoutButton from "../components/LogOutButton";
+import { Grid, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 function Home() {
-  const location = useLocation();
-
   return (
     <div className="welcome">
       <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item xs={8}>
-          <Link
-            to="/meetaneed"
-            className={location.pathname === "/meetaneed"}
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/meetaneed" style={{ textDecoration: "none" }}>
             <Button
               style={{ minWidth: "170px" }}
               variant="contained"
@@ -24,11 +17,7 @@ function Home() {
           </Link>
         </Grid>
         <Grid item xs={8}>
-          <Link
-            to="/commitments"
-            style={{ textDecoration: "none" }}
-            className={location.pathname === "/commitments"}
-          >
+          <Link to="/commitments" style={{ textDecoration: "none" }}>
             <Button
               style={{ minWidth: "170px" }}
               variant="contained"
@@ -39,11 +28,7 @@ function Home() {
           </Link>
         </Grid>
         <Grid item xs={8}>
-          <Link
-            to="/history"
-            className={location.pathname === "/history"}
-            style={{ textDecoration: "none" }}
-          >
+          <Link to="/history" style={{ textDecoration: "none" }}>
             <Button
               style={{ minWidth: "170px" }}
               variant="contained"

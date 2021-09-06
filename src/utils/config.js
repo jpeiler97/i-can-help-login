@@ -1,1 +1,1 @@
-export const Route = "http://ichntestserver.us1.gearhost.cloud";
+export const Route = "https://ichnserverdev.azurewebsites.net";

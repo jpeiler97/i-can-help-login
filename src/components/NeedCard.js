@@ -5,7 +5,6 @@ import {
   AccordionSummary,
   AccordionDetails,
   Button,
-  Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -29,7 +28,13 @@ function NeedCard({ title, description, details, id, Commit }) {
   // console.log({ id });
 
   return (
-    <Grid container item xs={12} justify="space-around" alignItems="center">
+    <Grid
+      container
+      item
+      xs={12}
+      justifyContent="space-around"
+      alignItems="center"
+    >
       <Accordion className={classes.root}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

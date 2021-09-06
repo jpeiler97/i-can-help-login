@@ -28,7 +28,13 @@ function CommitCard({ title, description, details, id, Uncommit }) {
   // console.log({ id });
 
   return (
-    <Grid container item xs={12} justify="space-around" alignItems="center">
+    <Grid
+      container
+      item
+      xs={12}
+      justifyContent="space-around"
+      alignItems="center"
+    >
       <Accordion className={classes.root}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
