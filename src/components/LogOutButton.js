@@ -24,12 +24,16 @@ function LogoutButton({ closeDrawer }) {
           }
         )
         .then((res) => {
-          console.log(res);
           localStorage.removeItem("login");
           closeDrawer();
           setIsAuthenticated(false);
         })
-        .catch((err) => console.log(err.response));
+        .catch((err) => {
+          //Will remove once I add a check for an expired token
+          closeDrawer();
+          setIsAuthenticated(false);
+          console.log(err.response);
+        });
     }
   };
 

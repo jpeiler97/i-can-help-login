@@ -14,7 +14,6 @@ const Logout = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         localStorage.removeItem("login");
       })
       .catch((err) => console.log(err.response));
