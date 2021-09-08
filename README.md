@@ -1,6 +1,6 @@
 # KeyndR
 
-KeyndR is a progressive web app that allows users to easily fulfill requests for organizations seeking to help the community. Users can view and commit to needs put out by organizations that they follow. I am the front-end developer of the app, working with an existing back-end built through SQL and Azure. 
+KeyndR is a progressive web app that allows users to easily fulfill requests for organizations seeking to help their community. Users can view and commit to needs put out by organizations that they follow. I am the front-end developer of the app, working with an existing back-end built through SQL and Azure. 
 
 ## Technologies Used
 - React.js
