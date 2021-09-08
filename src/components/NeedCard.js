@@ -9,6 +9,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import convertDate from "../utils/date";
+import { useSpring, animated } from "react-spring";
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +34,11 @@ const useStyles = makeStyles({
 
 function NeedCard({ title, description, details, date, id, Commit }) {
   const classes = useStyles();
+  const styles = useSpring({
+    loop: false,
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+  });
 
   return (
     <Grid
@@ -43,23 +49,28 @@ function NeedCard({ title, description, details, date, id, Commit }) {
       alignItems="center"
     >
       <Accordion className={classes.root}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-          classes={{ content: classes.content }}
-        >
-          <Grid container direction="column" className={classes.descDiv}>
-            <Grid item>{title}</Grid>
-            <Grid item className={classes.date}>
-              {convertDate(date)}
+        <animated.div style={styles}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+            classes={{ content: classes.content }}
+          >
+            <Grid container direction="column" className={classes.descDiv}>
+              <Grid item>{title}</Grid>
+              <Grid item className={classes.date}>
+                {convertDate(date)}
+              </Grid>
             </Grid>
-          </Grid>
-          <Button size="small" onClick={Commit(id)} className={classes.commit}>
-            Commit
-          </Button>
-        </AccordionSummary>
-
+            <Button
+              size="small"
+              onClick={Commit(id)}
+              className={classes.commit}
+            >
+              Commit
+            </Button>
+          </AccordionSummary>
+        </animated.div>
         <AccordionDetails>
           <Grid container direction="column">
             <Grid item>{details ? details : "No Details"}</Grid>

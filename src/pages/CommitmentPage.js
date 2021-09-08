@@ -45,7 +45,7 @@ function Commitments() {
         }
       )
       .then((res) => {
-        getCommitments(res.data);
+        setCommitments(commitments.filter((x) => x.id !== id));
       })
       .catch((err) => console.log(err));
   };

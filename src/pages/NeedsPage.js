@@ -4,12 +4,21 @@ import { Route } from "../utils/config";
 import NeedCard from "../components/NeedCard";
 import { Grid } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { animated, useTransition } from "react-spring";
 function NeedsPage() {
   const [needs, setNeeds] = useState({
     needs: [],
   });
   const [isLoading, setIsLoading] = useState(true);
+
+  // const transNeeds = useTransition(needs, (needs) => needs, {
+  //   from: { opacity: 0, transform: "translateY(-100px)" },
+  //   enter: { opacity: 1, transform: "translateY(0px)" },
+  //   leave: { opacity: 0, transform: "translateY(100px)" },
+  //   config: {
+  //     duration: 750,
+  //   },
+  // });
 
   useEffect(() => {
     getNeeds();
@@ -46,7 +55,7 @@ function NeedsPage() {
         }
       )
       .then((res) => {
-        getNeeds();
+        setNeeds(needs.filter((x) => x.id !== id));
       })
       .catch((err) => console.log(err));
   };
