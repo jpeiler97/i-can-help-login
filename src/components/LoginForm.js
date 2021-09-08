@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import {
   Button,
   Grid,
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     margin: "15px",
   },
   loginTitle: {
-    fontSize: "30px",
+    fontSize: "25px",
     fontFamily: "Roboto",
   },
   innerPaper: {
@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 
 function LoginForm({ Login, error }) {
   const classes = useStyles();
+
   const [details, setDetails] = useState({ Email: "", Password: "" });
 
   const submitHandler = (e) => {
@@ -63,7 +64,6 @@ function LoginForm({ Login, error }) {
                 >
                   <Grid item>
                     <TextField
-                      id="outlined-basic"
                       label="Email"
                       variant="standard"
                       type="email"
@@ -75,7 +75,6 @@ function LoginForm({ Login, error }) {
                   </Grid>
                   <Grid item>
                     <TextField
-                      id="outlined-basic"
                       label="Password"
                       type="password"
                       variant="standard"
@@ -89,6 +88,7 @@ function LoginForm({ Login, error }) {
                 {error !== "" ? <div className="error">{error}</div> : ""}
               </Paper>
             </Box>
+            <Link to="/register">Sign Up</Link>
             <Button
               className={classes.submitButton}
               variant="contained"

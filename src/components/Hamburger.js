@@ -109,7 +109,10 @@ export default function PersistentDrawerLeft() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(
+              classes.menuButton,
+              open ? classes.hide : undefined
+            )}
           >
             <MenuIcon />
           </IconButton>
@@ -174,7 +177,7 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <LogoutButton closeDrawer={handleDrawerClose}></LogoutButton>
-        v4
+        v5
       </Drawer>
     </div>
   );

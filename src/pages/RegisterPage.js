@@ -1,39 +1,63 @@
-import React, { useState } from "react";
+import React from "react";
 import RegisterForm from "../components/RegisterForm";
-import Home from "./Home";
+import { Route } from "../utils/config";
+import logo from "../assets/images/logoNoBkg.png";
+import axios from "axios";
 
-function RegisterPage() {
-  const [user, setUser] = useState({ name: "", email: "" });
-  const [error, setError] = useState("");
+class RegisterPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      Email: null,
+      Password: null,
+      login: false,
+      store: null,
+      error: "",
+    };
+  }
 
-  const Register = (details) => {
-    console.log(details);
-
-    if (details.password1 === details.password2) {
-      setUser({
-        name: details.name,
-        email: details.email,
+  Register = (details) => {
+    axios
+      .post(`${Route}/User/Register`, details)
+      .then((res) => {
+        console.log("res ", res);
+        localStorage.setItem(
+          "login",
+          JSON.stringify({
+            login: true,
+            token: res.data.token,
+          })
+        );
+        this.storeCollector();
+        // window.location.replace(`${window.location.pathname}/`);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        this.setState({ error: "Could not sign up" });
       });
-      setError("");
-    } else {
-      setError("Passwords do not match");
-    }
   };
 
-  const Logout = () => {
-    setUser({ name: "", email: "" });
-  };
-  return (
-    <div>
-      {user.email !== "" ? (
-        <Home Logout={Logout} username={user.name}></Home>
-      ) : (
-        <div>
-          <RegisterForm Register={Register} error={error}></RegisterForm>
-        </div>
-      )}
-    </div>
-  );
+  componentDidMount() {
+    this.storeCollector();
+  }
+
+  storeCollector() {
+    let store = JSON.parse(localStorage.getItem("login"));
+    if (store && store.login) {
+      this.setState({ login: true, store: store, error: "" });
+    }
+  }
+  render() {
+    return (
+      <div>
+        <img className="login-logo" src={logo} alt={"KyendR"} />
+        <RegisterForm
+          Register={this.Register}
+          error={this.state.error}
+        ></RegisterForm>
+      </div>
+    );
+  }
 }
 
 export default RegisterPage;

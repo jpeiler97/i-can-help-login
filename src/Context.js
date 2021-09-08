@@ -12,7 +12,7 @@ export default function Context({ children }) {
         setIsAuthenticated(true);
       }
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <>

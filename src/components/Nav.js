@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Hamburger from "./Hamburger";
 import NavBar from "./NavBar";
-import { Typography } from "@material-ui/core";
 import { userContext } from "../Context";
 
 function Nav() {

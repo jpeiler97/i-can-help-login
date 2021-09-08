@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import CommitmentPage from "./pages/CommitmentPage";
 import NeedsPage from "./pages/NeedsPage";
 import HistoryPage from "./pages/HistoryPage";
@@ -19,6 +20,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           {isAuthenticated ? <Home /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/register">
+          {isAuthenticated ? <Redirect to="/" /> : <RegisterPage />}
         </Route>
         <Route exact path="/login">
           {isAuthenticated ? <Redirect to="/" /> : <LoginPage />}
