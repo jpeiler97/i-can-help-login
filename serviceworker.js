@@ -32,7 +32,7 @@ self.addEventListener("activate", (event) => {
       Promise.all(
         cacheNames.map((cacheName) => {
           if (!cacheWhiteList.includes(cacheName)) {
-            return caches.delete(cacheName);
+            caches.delete(cacheName);
           }
         })
       )
