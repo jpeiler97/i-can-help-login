@@ -22,7 +22,6 @@ function NeedsPage() {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => {
-        console.log(res);
         setIsLoading(false);
         setNeeds(res.data);
       })
@@ -45,7 +44,6 @@ function NeedsPage() {
       )
       .then((res) => {
         getNeeds();
-        console.log(res);
       })
       .catch((err) => console.log(err));
   };
@@ -66,6 +64,7 @@ function NeedsPage() {
                 title={need.title}
                 description={need.description}
                 details={need.details}
+                date={need.commitmentDate}
                 Commit={Commit}
               ></NeedCard>
             );

@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import convertDate from "../utils/date";
 
 const useStyles = makeStyles({
   root: {
@@ -20,12 +21,13 @@ const useStyles = makeStyles({
     backgroundColor: "#c46956",
     height: "30px",
   },
+  date: {
+    fontSize: "12px",
+  },
 });
 
-function CommitCard({ title, description, details, id, Uncommit }) {
+function CommitCard({ title, description, details, date, id, Uncommit }) {
   const classes = useStyles();
-
-  // console.log({ id });
 
   return (
     <Grid
@@ -41,7 +43,12 @@ function CommitCard({ title, description, details, id, Uncommit }) {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <div className={classes.descDiv}>{title}</div>
+          <Grid container direction="column" className={classes.descDiv}>
+            <Grid item>{title}</Grid>
+            <Grid item className={classes.date}>
+              {convertDate(date)}
+            </Grid>
+          </Grid>
         </AccordionSummary>
         <AccordionDetails>
           {details ? details : "No Details"}

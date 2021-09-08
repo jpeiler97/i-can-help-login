@@ -22,7 +22,6 @@ function Commitments() {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => {
-        console.log(res.data);
         setIsLoading(false);
         setCommitments(res.data);
       })
@@ -44,7 +43,6 @@ function Commitments() {
         }
       )
       .then((res) => {
-        console.log(res);
         getCommitments(res.data);
       })
       .catch((err) => console.log(err));
@@ -72,6 +70,7 @@ function Commitments() {
                 title={item.title}
                 description={item.description}
                 details={item.details}
+                date={item.commitmentDate}
                 Uncommit={Uncommit}
               ></CommitCard>
             );

@@ -20,7 +20,6 @@ class RegisterPage extends React.Component {
     axios
       .post(`${Route}/User/Register`, details)
       .then((res) => {
-        console.log("res ", res);
         localStorage.setItem(
           "login",
           JSON.stringify({
@@ -32,7 +31,7 @@ class RegisterPage extends React.Component {
         // window.location.replace(`${window.location.pathname}/`);
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log(err);
         this.setState({ error: "Could not sign up" });
       });
   };
