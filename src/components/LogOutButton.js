@@ -30,6 +30,7 @@ function LogoutButton({ closeDrawer }) {
         })
         .catch((err) => {
           //Will remove once I add a check for an expired token
+          localStorage.removeItem("login");
           closeDrawer();
           setIsAuthenticated(false);
           console.log(err.response);

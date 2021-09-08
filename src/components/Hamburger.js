@@ -168,15 +168,8 @@ export default function PersistentDrawerLeft() {
             </ListItem>
           </Link>
         </List>
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <HistoryIcon />
-            </ListItemIcon>
-            <ListItemText primary="My History"></ListItemText>
-          </ListItem>
-        </List>
         <LogoutButton closeDrawer={handleDrawerClose}></LogoutButton>
+        <br />
         v5
       </Drawer>
     </div>

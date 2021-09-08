@@ -27,17 +27,6 @@ function Home() {
             </Button>
           </Link>
         </Grid>
-        <Grid item xs={8}>
-          <Link to="/history" style={{ textDecoration: "none" }}>
-            <Button
-              style={{ minWidth: "170px" }}
-              variant="contained"
-              color="primary"
-            >
-              My History
-            </Button>
-          </Link>
-        </Grid>
       </Grid>
     </div>
   );

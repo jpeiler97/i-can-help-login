@@ -28,7 +28,10 @@ function NeedsPage() {
       .catch((err) => console.log(err));
   };
 
-  const Commit = (id) => {
+  const Commit = (id) => (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     let store = JSON.parse(localStorage.getItem("login"));
 
     axios

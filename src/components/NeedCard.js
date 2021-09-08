@@ -9,12 +9,14 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import convertDate from "../utils/date";
+
 const useStyles = makeStyles({
   root: {
-    width: "70%",
+    width: "90%",
   },
   descDiv: {
     whiteSpace: "wrap",
+    width: "65%",
   },
   commit: {
     backgroundColor: "#b3eba7",
@@ -22,6 +24,10 @@ const useStyles = makeStyles({
   },
   date: {
     fontSize: "12px",
+  },
+  content: {
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 
@@ -41,6 +47,7 @@ function NeedCard({ title, description, details, date, id, Commit }) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
+          classes={{ content: classes.content }}
         >
           <Grid container direction="column" className={classes.descDiv}>
             <Grid item>{title}</Grid>
@@ -48,7 +55,11 @@ function NeedCard({ title, description, details, date, id, Commit }) {
               {convertDate(date)}
             </Grid>
           </Grid>
+          <Button size="small" onClick={Commit(id)} className={classes.commit}>
+            Commit
+          </Button>
         </AccordionSummary>
+
         <AccordionDetails>
           <Grid container direction="column">
             <Grid item>{details ? details : "No Details"}</Grid>
@@ -57,9 +68,6 @@ function NeedCard({ title, description, details, date, id, Commit }) {
           </Grid>
         </AccordionDetails>
       </Accordion>
-      <Button onClick={() => Commit(id)} className={classes.commit}>
-        Commit
-      </Button>
     </Grid>
   );
 }

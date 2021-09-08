@@ -28,7 +28,9 @@ function Commitments() {
       .catch((err) => console.log(err));
   };
 
-  const Uncommit = (id) => {
+  const Uncommit = (id) => (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     let store = JSON.parse(localStorage.getItem("login"));
 
     axios
@@ -70,7 +72,7 @@ function Commitments() {
                 title={item.title}
                 description={item.description}
                 details={item.details}
-                date={item.commitmentDate}
+                date={item.startDate}
                 Uncommit={Uncommit}
               ></CommitCard>
             );

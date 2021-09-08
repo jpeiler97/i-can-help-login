@@ -12,10 +12,11 @@ import convertDate from "../utils/date";
 
 const useStyles = makeStyles({
   root: {
-    width: "70%",
+    width: "90%",
   },
   descDiv: {
     whiteSpace: "wrap",
+    width: "65%",
   },
   uncommit: {
     backgroundColor: "#c46956",
@@ -23,6 +24,10 @@ const useStyles = makeStyles({
   },
   date: {
     fontSize: "12px",
+  },
+  content: {
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 
@@ -42,6 +47,7 @@ function CommitCard({ title, description, details, date, id, Uncommit }) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
+          classes={{ content: classes.content }}
         >
           <Grid container direction="column" className={classes.descDiv}>
             <Grid item>{title}</Grid>
@@ -49,16 +55,22 @@ function CommitCard({ title, description, details, date, id, Uncommit }) {
               {convertDate(date)}
             </Grid>
           </Grid>
+          <Button
+            size="small"
+            onClick={Uncommit(id)}
+            className={classes.uncommit}
+          >
+            Uncommit
+          </Button>
         </AccordionSummary>
         <AccordionDetails>
-          {details ? details : "No Details"}
-          <br />
-          {description ? description : "No Description"}
+          <Grid container direction="column">
+            <Grid item>{details ? details : "No Details"}</Grid>
+            <br />
+            <Grid item>{description ? description : "No Description"}</Grid>
+          </Grid>
         </AccordionDetails>
       </Accordion>
-      <Button onClick={() => Uncommit(id)} className={classes.uncommit}>
-        Uncommit
-      </Button>
     </Grid>
   );
 }
