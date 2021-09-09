@@ -11,6 +11,7 @@ KeyndR is a progressive web app that allows users to easily fulfill requests for
 - Axios
 - Material UI
 - Service Workers
+- React Spring
 
 ## Reach out
 
