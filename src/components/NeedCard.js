@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Accordion,
@@ -32,54 +32,47 @@ const useStyles = makeStyles({
   },
 });
 
-function NeedCard({ title, description, details, date, id, Commit }) {
+function NeedCard({ props, title, description, details, date, id, Commit }) {
   const classes = useStyles();
-  const styles = useSpring({
-    loop: false,
-    to: { opacity: 1 },
-    from: { opacity: 0 },
-  });
+  const [cardState, setCardState] = useState("active");
 
+  const handleCommit = (id) => (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCardState("inactive");
+    Commit(id);
+  };
   return (
-    <Grid
-      container
-      item
-      xs={12}
-      justifyContent="space-around"
-      alignItems="center"
-    >
-      <Accordion className={classes.root}>
-        <animated.div style={styles}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-            classes={{ content: classes.content }}
-          >
-            <Grid container direction="column" className={classes.descDiv}>
-              <Grid item>{title}</Grid>
-              <Grid item className={classes.date}>
-                {convertDate(date)}
-              </Grid>
-            </Grid>
-            <Button
-              size="small"
-              onClick={Commit(id)}
-              className={classes.commit}
-            >
-              Commit
-            </Button>
-          </AccordionSummary>
-        </animated.div>
-        <AccordionDetails>
-          <Grid container direction="column">
-            <Grid item>{details ? details : "No Details"}</Grid>
-            <br />
-            <Grid item>{description ? description : "No Description"}</Grid>
+    <Accordion className={classes.root}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel2a-content"
+        id="panel2a-header"
+        classes={{ content: classes.content }}
+      >
+        <Grid container direction="column" className={classes.descDiv}>
+          <Grid item>{title}</Grid>
+          <Grid item className={classes.date}>
+            {convertDate(date)}
           </Grid>
-        </AccordionDetails>
-      </Accordion>
-    </Grid>
+        </Grid>
+        <Button
+          size="small"
+          onClick={handleCommit(id)}
+          className={classes.commit}
+        >
+          Commit
+        </Button>
+      </AccordionSummary>
+
+      <AccordionDetails>
+        <Grid container direction="column">
+          <Grid item>{details ? details : "No Details"}</Grid>
+          <br />
+          <Grid item>{description ? description : "No Description"}</Grid>
+        </Grid>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 

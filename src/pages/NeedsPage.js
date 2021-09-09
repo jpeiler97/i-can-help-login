@@ -4,21 +4,12 @@ import { Route } from "../utils/config";
 import NeedCard from "../components/NeedCard";
 import { Grid } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { animated, useTransition } from "react-spring";
+import { animated, Transition } from "react-spring";
 function NeedsPage() {
   const [needs, setNeeds] = useState({
     needs: [],
   });
   const [isLoading, setIsLoading] = useState(true);
-
-  // const transNeeds = useTransition(needs, (needs) => needs, {
-  //   from: { opacity: 0, transform: "translateY(-100px)" },
-  //   enter: { opacity: 1, transform: "translateY(0px)" },
-  //   leave: { opacity: 0, transform: "translateY(100px)" },
-  //   config: {
-  //     duration: 750,
-  //   },
-  // });
 
   useEffect(() => {
     getNeeds();
@@ -37,10 +28,7 @@ function NeedsPage() {
       .catch((err) => console.log(err));
   };
 
-  const Commit = (id) => (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-
+  const Commit = (id) => {
     let store = JSON.parse(localStorage.getItem("login"));
 
     axios
@@ -67,21 +55,41 @@ function NeedsPage() {
           <CircularProgress />
         </div>
       ) : needs.length > 0 ? (
-        <Grid container direction="column" spacing={2}>
-          {needs.map((need) => {
+        <Transition
+          items={needs}
+          from={{
+            opacity: 0,
+          }}
+          enter={{
+            opacity: 1,
+            marginTop: "20px",
+            marginBottom: "20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            transform: "translate3d(0px,0,0)",
+          }}
+          leave={{ transform: "translate3d(500px,0,0)" }}
+          keys={(card) => card.id}
+          delay={100}
+        >
+          {(props, need) => {
             return (
-              <NeedCard
-                key={need.id}
-                id={need.id}
-                title={need.title}
-                description={need.description}
-                details={need.details}
-                date={need.commitmentDate}
-                Commit={Commit}
-              ></NeedCard>
+              <animated.div style={props}>
+                <NeedCard
+                  props={props}
+                  key={need.id}
+                  id={need.id}
+                  title={need.title}
+                  description={need.description}
+                  details={need.details}
+                  date={need.commitmentDate}
+                  Commit={Commit}
+                ></NeedCard>
+              </animated.div>
             );
-          })}
-        </Grid>
+          }}
+        </Transition>
       ) : (
         <div className="no-commitments">
           <h2>No Opportunities Available</h2>
