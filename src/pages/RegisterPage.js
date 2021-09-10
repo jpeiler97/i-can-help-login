@@ -20,15 +20,8 @@ class RegisterPage extends React.Component {
     axios
       .post(`${Route}/User/Register`, details)
       .then((res) => {
-        localStorage.setItem(
-          "login",
-          JSON.stringify({
-            login: true,
-            token: res.data.token,
-          })
-        );
-        this.storeCollector();
-        // window.location.replace(`${window.location.pathname}/`);
+        console.log(res);
+        window.location.replace(`${window.location.pathname}/`);
       })
       .catch((err) => {
         console.log(err);
@@ -36,16 +29,6 @@ class RegisterPage extends React.Component {
       });
   };
 
-  componentDidMount() {
-    this.storeCollector();
-  }
-
-  storeCollector() {
-    let store = JSON.parse(localStorage.getItem("login"));
-    if (store && store.login) {
-      this.setState({ login: true, store: store, error: "" });
-    }
-  }
   render() {
     return (
       <div>

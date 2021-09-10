@@ -30,15 +30,14 @@ const useStyles = makeStyles({
   },
 });
 
-function LoginForm({ Login, error }) {
+function ResetForm({ ResetPassword, error }) {
   const classes = useStyles();
 
-  const [details, setDetails] = useState({ Email: "", Password: "" });
+  const [email, setEmail] = useState({ email: "" });
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    Login(details);
+    ResetPassword(JSON.stringify(email.email));
   };
 
   return (
@@ -52,7 +51,7 @@ function LoginForm({ Login, error }) {
             alignItems="center"
             spacing={2}
           >
-            <h2 className={classes.loginTitle}>Login</h2>
+            <h2 className={classes.loginTitle}>Request New Password</h2>
             <Box width="70%">
               <Paper className={classes.innerPaper} elevation={2}>
                 <Grid
@@ -64,47 +63,31 @@ function LoginForm({ Login, error }) {
                 >
                   <Grid item>
                     <TextField
-                      label="Email"
+                      label="Enter Email"
                       variant="standard"
                       type="email"
-                      onChange={(e) =>
-                        setDetails({ ...details, Email: e.target.value })
-                      }
-                      value={details.Email}
-                    ></TextField>
-                  </Grid>
-                  <Grid item>
-                    <TextField
-                      label="Password"
-                      type="password"
-                      variant="standard"
-                      onChange={(e) =>
-                        setDetails({ ...details, Password: e.target.value })
-                      }
-                      value={details.Password}
+                      onChange={(e) => setEmail({ email: e.target.value })}
+                      value={email.email}
                     ></TextField>
                   </Grid>
                 </Grid>
                 {error !== "" ? <div className="error">{error}</div> : ""}
               </Paper>
             </Box>
-            <Link to="/register">Sign Up</Link>
-            <Link to="/resetpassword">Forgot Password?</Link>
+            <Link to="/login">Return to login screen</Link>
             <Button
               className={classes.submitButton}
               variant="contained"
               type="submit"
-              value="LOGIN"
+              value="REQUEST PASSWORD"
             >
-              LOGIN
+              Request Password
             </Button>
           </Grid>
-
-          <Grid container direction="column" alignItems="center"></Grid>
         </Paper>
       </Container>
     </form>
   );
 }
 
-export default LoginForm;
+export default ResetForm;

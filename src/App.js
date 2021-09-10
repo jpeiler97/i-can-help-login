@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import { userContext } from "./Context";
 import Nav from "./components/Nav";
 import "./styles/styles.css";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   // const [user, setUser] = useState({ name: "", email: "" });
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           {isAuthenticated ? <Redirect to="/" /> : <LoginPage />}
+        </Route>
+        <Route exact path="/resetpassword">
+          {isAuthenticated ? <Redirect to="/" /> : <ForgotPassword />}
         </Route>
         <Route path="/commitments">
           {isAuthenticated ? <CommitmentPage /> : <Redirect to="/login" />}
