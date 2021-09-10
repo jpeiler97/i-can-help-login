@@ -51,3 +51,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.register-page {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

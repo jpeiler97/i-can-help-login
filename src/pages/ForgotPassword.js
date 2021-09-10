@@ -1,7 +1,6 @@
 import React from "react";
 import ResetForm from "../components/ResetForm";
 import { Route } from "../utils/config";
-import logo from "../assets/images/logoNoBkg.png";
 import axios from "axios";
 
 class ForgotPassword extends React.Component {
@@ -33,7 +32,7 @@ class ForgotPassword extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="register-page">
         {/* <img className="login-logo" src={logo} alt={"KyendR"} /> */}
         <ResetForm
           ResetPassword={this.ResetPassword}
