@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Grid,
   Accordion,
@@ -9,7 +9,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import convertDate from "../utils/date";
-import { useSpring, animated } from "react-spring";
 
 const useStyles = makeStyles({
   root: {
@@ -32,14 +31,12 @@ const useStyles = makeStyles({
   },
 });
 
-function NeedCard({ props, title, description, details, date, id, Commit }) {
+function NeedCard({ title, description, details, date, id, Commit }) {
   const classes = useStyles();
-  const [cardState, setCardState] = useState("active");
 
   const handleCommit = (id) => (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setCardState("inactive");
     Commit(id);
   };
   return (

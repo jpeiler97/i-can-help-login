@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Route } from "../utils/config";
 import CommitCard from "../components/CommitCard";
-import { Grid } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { animated, Transition } from "react-spring";
 
 function Commitments() {
   const [commitments, setCommitments] = useState({
@@ -28,9 +28,7 @@ function Commitments() {
       .catch((err) => console.log(err));
   };
 
-  const Uncommit = (id) => (e) => {
-    e.stopPropagation();
-    e.preventDefault();
+  const Uncommit = (id) => {
     let store = JSON.parse(localStorage.getItem("login"));
 
     axios
@@ -57,27 +55,41 @@ function Commitments() {
           <CircularProgress />
         </div>
       ) : commitments.length > 0 ? (
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
+        <Transition
+          items={commitments}
+          from={{
+            opacity: 0,
+          }}
+          enter={{
+            opacity: 1,
+            marginTop: "20px",
+            marginBottom: "20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            transform: "translate3d(0px,0,0)",
+          }}
+          leave={{ transform: "translate3d(500px,0,0)" }}
+          keys={(card) => card.id}
+          delay={100}
         >
-          {commitments.map((item, i) => {
+          {(props, commitment) => {
             return (
-              <CommitCard
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                description={item.description}
-                details={item.details}
-                date={item.startDate}
-                Uncommit={Uncommit}
-              ></CommitCard>
+              <animated.div style={props}>
+                <CommitCard
+                  props={props}
+                  key={commitment.id}
+                  id={commitment.id}
+                  title={commitment.title}
+                  description={commitment.description}
+                  details={commitment.details}
+                  date={commitment.startDate}
+                  Uncommit={Uncommit}
+                ></CommitCard>
+              </animated.div>
             );
-          })}
-        </Grid>
+          }}
+        </Transition>
       ) : (
         <div className="no-commitments">
           <h2>No Commitments yet.</h2>

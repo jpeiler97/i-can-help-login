@@ -15,7 +15,6 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import HistoryIcon from "@material-ui/icons/History";
 import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import LogoutButton from "./LogOutButton";

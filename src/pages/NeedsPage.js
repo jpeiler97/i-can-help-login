@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Route } from "../utils/config";
 import NeedCard from "../components/NeedCard";
-import { Grid } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { animated, Transition } from "react-spring";
+
 function NeedsPage() {
   const [needs, setNeeds] = useState({
     needs: [],
