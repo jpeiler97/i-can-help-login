@@ -25,6 +25,11 @@ class LoginPage extends React.Component {
           "login",
           JSON.stringify({
             login: true,
+            user: {
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+              email: res.data.email,
+            },
             token: res.data.token,
             expiration: res.data.expiration,
           })

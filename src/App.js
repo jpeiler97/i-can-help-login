@@ -4,7 +4,9 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CommitmentPage from "./pages/CommitmentPage";
 import NeedsPage from "./pages/NeedsPage";
-import HistoryPage from "./pages/HistoryPage";
+import FollowPage from "./pages/FollowPage";
+import SettingsPage from "./pages/SettingsPage";
+import ChangePassPage from "./pages/ChangePassPage";
 import Home from "./pages/Home";
 import { userContext } from "./Context";
 import Nav from "./components/Nav";
@@ -37,8 +39,15 @@ function App() {
         <Route path="/meetaneed">
           {isAuthenticated ? <NeedsPage /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/history">
-          {isAuthenticated ? <HistoryPage /> : <Redirect to="/login" />}
+        {/* Add after Follow is added */}
+        {/* <Route path="/follow">
+          {isAuthenticated ? <FollowPage /> : <Redirect to="/login" />}
+        </Route> */}
+        <Route path="/settings">
+          {isAuthenticated ? <SettingsPage /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/changepassword">
+          {isAuthenticated ? <ChangePassPage /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </div>

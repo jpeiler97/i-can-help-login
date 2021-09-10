@@ -15,8 +15,13 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark";
-import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import {
+  CollectionsBookmark,
+  AssignmentTurnedIn,
+  Settings,
+  RotateLeft,
+} from "@material-ui/icons";
+
 import LogoutButton from "./LogOutButton";
 import { Link, useLocation } from "react-router-dom";
 
@@ -146,7 +151,7 @@ export default function PersistentDrawerLeft() {
           >
             <ListItem button>
               <ListItemIcon>
-                <AssignmentTurnedInIcon />
+                <AssignmentTurnedIn />
               </ListItemIcon>
               <ListItemText primary="Fill a Need"></ListItemText>
             </ListItem>
@@ -161,9 +166,55 @@ export default function PersistentDrawerLeft() {
           >
             <ListItem button>
               <ListItemIcon>
-                <CollectionsBookmarkIcon />
+                <CollectionsBookmark />
               </ListItemIcon>
               <ListItemText primary="My Commitments"></ListItemText>
+            </ListItem>
+          </Link>
+        </List>
+        {/* Add after adding Follow stuff */}
+        {/* <List>
+          <Link
+            to="/follow"
+            className={location.pathname === "/follow"}
+            style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.87)" }}
+            onClick={handleDrawerClose}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <AddCircle />
+              </ListItemIcon>
+              <ListItemText primary="Follow a Registry"></ListItemText>
+            </ListItem>
+          </Link>
+        </List> */}
+        <List>
+          <Link
+            to="/settings"
+            className={location.pathname === "/settings"}
+            style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.87)" }}
+            onClick={handleDrawerClose}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
+              <ListItemText primary="Settings"></ListItemText>
+            </ListItem>
+          </Link>
+        </List>
+        <List>
+          <Link
+            to="/changepassword"
+            className={location.pathname === "/changepassword"}
+            style={{ textDecoration: "none", color: "rgba(0, 0, 0, 0.87)" }}
+            onClick={handleDrawerClose}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <RotateLeft />
+              </ListItemIcon>
+              <ListItemText primary="Change Password"></ListItemText>
             </ListItem>
           </Link>
         </List>
