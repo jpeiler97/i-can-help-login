@@ -1,18 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ResetForm from "../components/ResetForm";
 import { Route } from "../utils/config";
 import axios from "axios";
 
-class ForgotPassword extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      Email: null,
-      error: "",
-    };
-  }
+function ForgotPassword() {
+  const [error, setError] = useState("");
 
-  ResetPassword = (details) => {
+  const ResetPassword = (details) => {
     axios
       .post(`${Route}/User/RequestNewPassword`, details, {
         headers: {
@@ -26,21 +20,15 @@ class ForgotPassword extends React.Component {
       })
       .catch((err) => {
         console.log(err.response);
-        this.setState({ error: "Could not send password link" });
+        setError("Could not send password link");
       });
   };
 
-  render() {
-    return (
-      <div className="register-page">
-        {/* <img className="login-logo" src={logo} alt={"KyendR"} /> */}
-        <ResetForm
-          ResetPassword={this.ResetPassword}
-          error={this.state.error}
-        ></ResetForm>
-      </div>
-    );
-  }
+  return (
+    <div className="register-page">
+      <ResetForm ResetPassword={ResetPassword} error={error}></ResetForm>
+    </div>
+  );
 }
 
 export default ForgotPassword;

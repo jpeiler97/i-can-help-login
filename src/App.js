@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CommitmentPage from "./pages/CommitmentPage";
 import NeedsPage from "./pages/NeedsPage";
-import FollowPage from "./pages/FollowPage";
+// import FollowPage from "./pages/FollowPage";
 import SettingsPage from "./pages/SettingsPage";
 import ChangePassPage from "./pages/ChangePassPage";
 import Home from "./pages/Home";
