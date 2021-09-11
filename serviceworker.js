@@ -2,7 +2,7 @@ const CACHE_NAME = "version-5";
 const urlsToCache = ["index.html", "offline.html"];
 
 const self = this;
-console.log(this);
+
 //Install SW
 this.addEventListener("install", (event) => {
   event.waitUntil(

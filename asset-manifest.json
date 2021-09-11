@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/keyndr-app/static/css/main.43f6db8d.chunk.css",
-    "main.js": "/keyndr-app/static/js/main.dc9d6990.chunk.js",
-    "main.js.map": "/keyndr-app/static/js/main.dc9d6990.chunk.js.map",
+    "main.js": "/keyndr-app/static/js/main.ba4aa5cb.chunk.js",
+    "main.js.map": "/keyndr-app/static/js/main.ba4aa5cb.chunk.js.map",
     "runtime-main.js": "/keyndr-app/static/js/runtime-main.37106ab8.js",
     "runtime-main.js.map": "/keyndr-app/static/js/runtime-main.37106ab8.js.map",
     "static/js/2.db50fe89.chunk.js": "/keyndr-app/static/js/2.db50fe89.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.37106ab8.js",
     "static/js/2.db50fe89.chunk.js",
     "static/css/main.43f6db8d.chunk.css",
-    "static/js/main.dc9d6990.chunk.js"
+    "static/js/main.ba4aa5cb.chunk.js"
   ]
 }
