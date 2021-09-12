@@ -22,6 +22,8 @@ function Commitments() {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => {
+        console.log(res.data);
+
         setIsLoading(false);
         setCommitments(res.data);
       })
@@ -80,10 +82,10 @@ function Commitments() {
                   props={props}
                   key={commitment.id}
                   id={commitment.id}
-                  title={commitment.title}
+                  title={commitment.name}
                   description={commitment.description}
                   details={commitment.details}
-                  date={commitment.startDate}
+                  date={commitment.expirationDate}
                   Uncommit={Uncommit}
                 ></CommitCard>
               </animated.div>

@@ -12,7 +12,7 @@ function RegisterPage() {
       .post(`${Route}/User/Register`, details)
       .then((res) => {
         console.log(res);
-        window.location.replace(`${window.location.pathname}/`);
+        window.location.replace(`/`);
       })
       .catch((err) => {
         console.log(err);

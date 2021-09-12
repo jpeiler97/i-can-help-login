@@ -26,6 +26,7 @@ function LoginPage() {
           })
         );
         // this.storeCollector();
+        console.log(window.location.pathname);
         window.location.replace(`${window.location.pathname}/`);
       })
       .catch((err) => {

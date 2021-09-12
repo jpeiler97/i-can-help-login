@@ -16,6 +16,7 @@ function ForgotPassword() {
       })
       .then((res) => {
         console.log(res.data);
+        setError("Password Reset");
         // window.location.replace(`${window.location.pathname}/`);
       })
       .catch((err) => {
