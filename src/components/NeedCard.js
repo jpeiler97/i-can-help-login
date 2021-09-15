@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Button,
+  TextField,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -31,13 +32,34 @@ const useStyles = makeStyles({
   },
 });
 
-function NeedCard({ title, description, details, date, id, Commit }) {
+function NeedCard({
+  title,
+  description,
+  details,
+  date,
+  id,
+  count,
+  needed,
+  Commit,
+}) {
   const classes = useStyles();
+
+  const [state, setState] = useState({
+    commitCount: 0,
+    needed: needed,
+    count: count,
+  });
 
   const handleCommit = (id) => (e) => {
     e.preventDefault();
     e.stopPropagation();
-    Commit(id);
+    Commit(id, state.commitCount, state.needed, state.count);
+    if (state.count + state.commitCount !== state.needed) {
+      setState({
+        ...state,
+        count: parseInt(state.count) + parseInt(state.commitCount),
+      });
+    }
   };
   return (
     <Accordion className={classes.root}>
@@ -49,8 +71,20 @@ function NeedCard({ title, description, details, date, id, Commit }) {
       >
         <Grid container direction="column" className={classes.descDiv}>
           <Grid item>{title}</Grid>
+          <Grid item>Needs remaining: {state.needed - state.count}</Grid>
           <Grid item className={classes.date}>
             {convertDate(date)}
+          </Grid>
+          <Grid item>
+            <form className={classes.root} noValidate autoComplete="off">
+              <TextField
+                id="standard-basic"
+                label="# needs to fulfill"
+                onChange={(e) =>
+                  setState({ ...state, commitCount: e.target.value })
+                }
+              />
+            </form>
           </Grid>
         </Grid>
         <Button

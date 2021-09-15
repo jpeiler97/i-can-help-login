@@ -22,13 +22,14 @@ function NeedsPage() {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => {
+        console.log(res.data);
         setIsLoading(false);
         setNeeds(res.data);
       })
       .catch((err) => console.log(err));
   };
 
-  const Commit = (id) => {
+  const Commit = (id, count, needed, commitments) => {
     let store = JSON.parse(localStorage.getItem("login"));
 
     axios
@@ -36,14 +37,16 @@ function NeedsPage() {
         `${Route}/Provider/Commit`,
         {
           needId: id,
-          count: 1,
+          count: count,
         },
         {
           headers: { Authorization: `Bearer ${store.token}` },
         }
       )
       .then((res) => {
-        setNeeds(needs.filter((x) => x.id !== id));
+        if (parseInt(commitments) + parseInt(count) === needed) {
+          setNeeds(needs.filter((x) => x.id !== id));
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -83,6 +86,8 @@ function NeedsPage() {
                   title={need.title}
                   description={need.description}
                   details={need.details}
+                  count={need.commitments}
+                  needed={need.needed}
                   date={need.commitmentDate}
                   Commit={Commit}
                 ></NeedCard>
