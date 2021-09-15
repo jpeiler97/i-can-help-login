@@ -22,6 +22,9 @@ const useStyles = makeStyles({
   commit: {
     backgroundColor: "#b3eba7",
     height: "30px",
+    "&:focus": {
+      backgroundColor: "#b3eba7",
+    },
   },
   disabled: {
     display: "none",
@@ -93,8 +96,9 @@ function NeedCard({
             </form>
           </Grid>
         </Grid>
-        {!state.fulfilled ? (
+        {state.count < state.needed ? (
           <Button
+            color="default"
             size="small"
             onClick={handleCommit(id)}
             className={classes.commit}
@@ -102,7 +106,7 @@ function NeedCard({
             Commit
           </Button>
         ) : (
-          <Button disabled size="small" className={classes.commit}>
+          <Button disabled size="small" color="disabled">
             Commit
           </Button>
         )}
