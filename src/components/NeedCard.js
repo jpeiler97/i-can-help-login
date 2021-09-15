@@ -23,6 +23,9 @@ const useStyles = makeStyles({
     backgroundColor: "#b3eba7",
     height: "30px",
   },
+  disabled: {
+    display: "none",
+  },
   date: {
     fontSize: "12px",
   },
@@ -48,6 +51,7 @@ function NeedCard({
     commitCount: 0,
     needed: needed,
     count: count,
+    fulfilled: false,
   });
 
   const handleCommit = (id) => (e) => {
@@ -59,6 +63,8 @@ function NeedCard({
         ...state,
         count: parseInt(state.count) + parseInt(state.commitCount),
       });
+    } else {
+      setState({ ...state, fulfilled: true });
     }
   };
   return (
@@ -87,13 +93,19 @@ function NeedCard({
             </form>
           </Grid>
         </Grid>
-        <Button
-          size="small"
-          onClick={handleCommit(id)}
-          className={classes.commit}
-        >
-          Commit
-        </Button>
+        {!state.fulfilled ? (
+          <Button
+            size="small"
+            onClick={handleCommit(id)}
+            className={classes.commit}
+          >
+            Commit
+          </Button>
+        ) : (
+          <Button disabled size="small" className={classes.commit}>
+            Commit
+          </Button>
+        )}
       </AccordionSummary>
 
       <AccordionDetails>
