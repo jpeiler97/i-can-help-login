@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { userContext } from "../Context";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Grid } from "@material-ui/core";
 import { Route } from "../utils/config";
 import axios from "axios";
 
@@ -21,7 +21,6 @@ export default function SettingsPage() {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => {
-        console.log(res.data);
         setUser(details);
       })
       .catch((err) => {
@@ -38,37 +37,49 @@ export default function SettingsPage() {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <TextField
-          label="First Name"
-          variant="standard"
-          required
-          onChange={(e) =>
-            setDetails({ ...details, firstName: e.target.value })
-          }
-          value={details.firstName}
-        ></TextField>
+        <Grid container direction="column" alignItems="center" spacing={2}>
+          <Grid item>
+            <TextField
+              label="First Name"
+              variant="standard"
+              required
+              onChange={(e) =>
+                setDetails({ ...details, firstName: e.target.value })
+              }
+              value={details.firstName}
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Last Name"
+              variant="standard"
+              required
+              onChange={(e) =>
+                setDetails({ ...details, lastName: e.target.value })
+              }
+              value={details.lastName}
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Email"
+              variant="standard"
+              type="email"
+              required
+              onChange={(e) =>
+                setDetails({ ...details, email: e.target.value })
+              }
+              value={details.email}
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" type="submit" value="LOGIN">
+              Save Changes
+            </Button>
+          </Grid>
 
-        <TextField
-          label="Last Name"
-          variant="standard"
-          required
-          onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
-          value={details.lastName}
-        ></TextField>
-
-        <TextField
-          label="Email"
-          variant="standard"
-          type="email"
-          required
-          onChange={(e) => setDetails({ ...details, email: e.target.value })}
-          value={details.email}
-        ></TextField>
-
-        {error !== "" ? <div className="error">{error}</div> : ""}
-        <Button variant="contained" type="submit" value="LOGIN">
-          Save Changes
-        </Button>
+          {error !== "" ? <div className="error">{error}</div> : ""}
+        </Grid>
       </form>
     </div>
   );

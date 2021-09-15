@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Grid } from "@material-ui/core";
 import axios from "axios";
 import { Route } from "../utils/config";
 import { userContext } from "../Context";
@@ -45,28 +45,40 @@ export default function ChangePassPage() {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <TextField
-          label="Password"
-          variant="standard"
-          required
-          type="password"
-          onChange={(e) => setPass({ ...pass, password: e.target.value })}
-          value={pass.password}
-        ></TextField>
-
-        <TextField
-          label="Confirm Password"
-          variant="standard"
-          required
-          type="password"
-          onChange={(e) => setState({ ...state, password2: e.target.value })}
-          value={state.password2}
-        ></TextField>
-
-        {state.error !== "" ? <div className="error">{state.error}</div> : ""}
-        <Button variant="contained" type="submit">
-          Change Password
-        </Button>
+        <Grid container direction="column" alignContent="center" spacing={2}>
+          <Grid item>
+            <TextField
+              label="Password"
+              variant="standard"
+              required
+              type="password"
+              onChange={(e) => setPass({ ...pass, password: e.target.value })}
+              value={pass.password}
+            ></TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Confirm Password"
+              variant="standard"
+              required
+              type="password"
+              onChange={(e) =>
+                setState({ ...state, password2: e.target.value })
+              }
+              value={state.password2}
+            ></TextField>
+          </Grid>
+          <Grid item>
+            {state.error !== "" ? (
+              <div className="error">{state.error}</div>
+            ) : (
+              ""
+            )}
+            <Button variant="contained" type="submit">
+              Change Password
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     </div>
   );

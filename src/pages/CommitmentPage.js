@@ -22,8 +22,6 @@ function Commitments() {
         headers: { Authorization: `Bearer ${store.token}` },
       })
       .then((res) => {
-        console.log(res.data);
-
         setIsLoading(false);
         setCommitments(res.data);
       })

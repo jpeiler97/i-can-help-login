@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   descDiv: {
     whiteSpace: "wrap",
-    width: "65%",
+    // width: "80%",
   },
   commit: {
     backgroundColor: "#b3eba7",
@@ -56,18 +56,27 @@ function NeedCard({
     count: count,
     fulfilled: false,
   });
+  const [error, setError] = useState("");
 
   const handleCommit = (id) => (e) => {
     e.preventDefault();
     e.stopPropagation();
-    Commit(id, state.commitCount, state.needed, state.count);
-    if (state.count + state.commitCount !== state.needed) {
-      setState({
-        ...state,
-        count: parseInt(state.count) + parseInt(state.commitCount),
-      });
+    if (
+      state.commitCount > 0 &&
+      state.needed - (state.count + state.commitCount) >= 0
+    ) {
+      Commit(id, state.commitCount, state.needed, state.count);
+      if (state.count + state.commitCount !== state.needed) {
+        setState({
+          ...state,
+          count: parseInt(state.count) + parseInt(state.commitCount),
+        });
+        setError("");
+      } else {
+        setState({ ...state, fulfilled: true });
+      }
     } else {
-      setState({ ...state, fulfilled: true });
+      setError("Please enter a value");
     }
   };
   return (
@@ -79,37 +88,49 @@ function NeedCard({
         classes={{ content: classes.content }}
       >
         <Grid container direction="column" className={classes.descDiv}>
-          <Grid item>{title}</Grid>
-          <Grid item>Needs remaining: {state.needed - state.count}</Grid>
+          <Grid item>
+            {title}
+            <hr />
+          </Grid>
+
+          <Grid item>
+            Needs remaining: {state.needed - state.count} <hr />
+          </Grid>
           <Grid item className={classes.date}>
             {convertDate(date)}
           </Grid>
-          <Grid item>
-            <form className={classes.root} noValidate autoComplete="off">
+          <Grid container direction="row" wrap="nowrap" alignItems="flex-end">
+            <Grid item>
               <TextField
-                id="standard-basic"
                 label="# needs to fulfill"
+                className={classes.root}
+                onClick={(event) => event.stopPropagation()}
+                onFocus={(event) => event.stopPropagation()}
                 onChange={(e) =>
                   setState({ ...state, commitCount: e.target.value })
                 }
               />
-            </form>
+            </Grid>
+            <Grid item>
+              {" "}
+              {state.count < state.needed ? (
+                <Button
+                  color="default"
+                  size="small"
+                  onClick={handleCommit(id)}
+                  className={classes.commit}
+                >
+                  Commit
+                </Button>
+              ) : (
+                <Button disabled size="small" color="disabled">
+                  Commit
+                </Button>
+              )}
+              {error}
+            </Grid>
           </Grid>
         </Grid>
-        {state.count < state.needed ? (
-          <Button
-            color="default"
-            size="small"
-            onClick={handleCommit(id)}
-            className={classes.commit}
-          >
-            Commit
-          </Button>
-        ) : (
-          <Button disabled size="small" color="disabled">
-            Commit
-          </Button>
-        )}
       </AccordionSummary>
 
       <AccordionDetails>

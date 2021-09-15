@@ -11,7 +11,6 @@ function LoginPage() {
     axios
       .post(`${Route}/User/Login`, details)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem(
           "login",
           JSON.stringify({
@@ -25,8 +24,6 @@ function LoginPage() {
             expiration: res.data.expiration,
           })
         );
-        // this.storeCollector();
-        console.log(window.location.pathname);
         window.location.replace(`${window.location.pathname}/`);
       })
       .catch((err) => {
@@ -34,17 +31,6 @@ function LoginPage() {
         setError("Could not log in");
       });
   };
-
-  // componentDidMount() {
-  //   this.storeCollector();
-  // }
-
-  // const storeCollector = () => {
-  //   let store = JSON.parse(localStorage.getItem("login"));
-  //   if (store && store.login) {
-  //     this.setState({ login: true, store: store, error: "" });
-  //   }
-  // }
 
   return (
     <div>
