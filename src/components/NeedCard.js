@@ -17,7 +17,6 @@ const useStyles = makeStyles({
   },
   descDiv: {
     whiteSpace: "wrap",
-    // width: "80%",
   },
   commit: {
     backgroundColor: "#b3eba7",
@@ -36,6 +35,12 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  visible: {
+    visibility: "visible",
+  },
+  invisible: {
+    visibility: "hidden",
+  },
 });
 
 function NeedCard({
@@ -52,29 +57,37 @@ function NeedCard({
 
   const [state, setState] = useState({
     commitCount: 0,
-    needed: needed,
-    count: count,
+    needed: parseInt(needed),
+    count: parseInt(count),
     fulfilled: false,
   });
   const [error, setError] = useState("");
 
+  const oneLeft = (needed, count) => {
+    if (needed - count <= 1) {
+      return true;
+    }
+  };
+
   const handleCommit = (id) => (e) => {
+    let needed = parseInt(state.needed);
+    let count = parseInt(state.count);
+    let commitCount = parseInt(state.commitCount);
     e.preventDefault();
     e.stopPropagation();
-    if (
-      state.commitCount > 0 &&
-      state.needed - (state.count + state.commitCount) >= 0
-    ) {
-      Commit(id, state.commitCount, state.needed, state.count);
-      if (state.count + state.commitCount !== state.needed) {
+    if (commitCount > 0 && needed - (count + commitCount) >= 0) {
+      Commit(id, commitCount, needed, count);
+      if (count + commitCount !== needed) {
         setState({
           ...state,
-          count: parseInt(state.count) + parseInt(state.commitCount),
+          count: count + commitCount,
         });
         setError("");
       } else {
-        setState({ ...state, fulfilled: true });
+        setState({ ...state, count: state.needed, fulfilled: true });
       }
+    } else if (needed === 1 || needed - count === 1) {
+      Commit(id, 1, needed, count);
     } else {
       setError("Please enter a value");
     }
@@ -100,7 +113,14 @@ function NeedCard({
             {convertDate(date)}
           </Grid>
           <Grid container direction="row" wrap="nowrap" alignItems="flex-end">
-            <Grid item>
+            <Grid
+              item
+              className={
+                !oneLeft(state.needed, state.count)
+                  ? classes.visible
+                  : classes.invisible
+              }
+            >
               <TextField
                 label="# needs to fulfill"
                 className={classes.root}
